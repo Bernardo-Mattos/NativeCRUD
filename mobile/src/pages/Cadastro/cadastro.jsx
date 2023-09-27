@@ -5,10 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect } from "react";
-import firebase from "firebase/app";
-import db from "../../config/firebase.config";
 import { useState } from "react";
+import saveCadastroData from "../../config/firebase.config";
 
 export default function Cadastro({navigation}) {
   const [name , setName ] = useState('');
@@ -16,7 +14,8 @@ export default function Cadastro({navigation}) {
   const [email , setEmail ] = useState('');
   
   const handleSignUp = () => {
-    console.log("Dados de cadastro:", { name, email, age });
+    saveCadastroData(name , age , email);
+    navigation.navigate('Login');
   };
   return (
     <View style={styles.container}>
