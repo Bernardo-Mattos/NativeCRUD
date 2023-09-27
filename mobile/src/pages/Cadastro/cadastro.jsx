@@ -39,11 +39,11 @@ export default function Cadastro({navigation}) {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Login Page</Text>
+            <Text style={styles.modalText}>Usuario cadastrado com sucesso !</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={handleSignUp}>
-              <Text style={styles.textStyle}>Login</Text>
+              <Text style={styles.textStyle}>Logar</Text>
             </Pressable>
           </View>
         </View>
@@ -57,7 +57,7 @@ export default function Cadastro({navigation}) {
       <Pressable
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}>
-        <Text style={styles.textStyle}>Show Modal</Text>
+        <Text style={styles.textStyle}>Cadastrar</Text>
       </Pressable>
     </View>
   );
@@ -93,9 +93,9 @@ const styles = StyleSheet.create({
 
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#0a5c36',
     borderRadius: 20,
-    padding: 35,
+    padding: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -107,9 +107,10 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
+    borderRadius: 4,
+    padding: 10.20,
     elevation: 1,
+
   },
   buttonOpen: {
     backgroundColor: '#888',
@@ -125,5 +126,6 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    color: '#fff'
   },
 });
