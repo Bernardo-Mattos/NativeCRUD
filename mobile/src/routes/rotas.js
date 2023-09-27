@@ -9,8 +9,8 @@ const Stack = createNativeStackNavigator();
 
 export default function Rotas() {
   return (
-    <Stack.Navigator initialRouteName="Main"> 
-      <Stack.Screen name="Main" component={Login} />
+    <Stack.Navigator initialRouteName="Cadastro"> 
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Cadastro" component={Cadastro} />
       <Stack.Screen name="Users" component={Users} />
     </Stack.Navigator>
