@@ -21,7 +21,7 @@ export default function Cadastro({ navigation }) {
 
   const handleSignUp = async () => {
     saveCadastroData(name, age, email);
-    await delay(2000);
+    await delay(100);
     navigation.navigate("Login");
   };
 
@@ -50,7 +50,7 @@ export default function Cadastro({ navigation }) {
         </View>
       </Modal>
       <View style={styles.containerInput}>
-        <FontAwesome name="user" size={100} color="#999" />
+        <FontAwesome name="user" size={100} color="#293233" />
 
         <TextInput
           style={styles.input}
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#E8E5Da",
   },
   ttl: {
     color: "#fff",
@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
 
   modalView: {
     margin: 20,
-    backgroundColor: "#0a5c36",
+    top:'' ,
+    backgroundColor: "#fff",
     borderRadius: 20,
     padding: 20,
     alignItems: "center",
@@ -125,6 +126,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  centeredView:{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
   button: {
     borderRadius: 4,
     paddingVertical: 10,
@@ -132,11 +138,11 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   buttonOpen: {
-    backgroundColor: "#888",
+    backgroundColor: "#293233",
     top: 20,
   },
   buttonClose: {
-    backgroundColor: "#888",
+    backgroundColor: "#243625",
   },
   textStyle: {
     color: "white",
@@ -146,6 +152,6 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    color: "#fff",
+    color: "#243625",
   },
 });
