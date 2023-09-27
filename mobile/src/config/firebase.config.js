@@ -12,3 +12,5 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getStorage(app, "gs://crud-8635e.appspot.com");
+
+export default db;

@@ -5,7 +5,7 @@ import Rotas from './src/routes/rotas';
 export default function App() {
   return (
     <NavigationContainer>
-      <Rotas />
+      <Rotas/>
     </NavigationContainer>
   );
 }
