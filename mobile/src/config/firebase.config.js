@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, set } from "firebase/database";
-import { useNavigation } from "@react-navigation/native";
 
 import "firebase/database";
+import { Alert } from "react-native";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAKT6ZB7E2wq5q8jKrEzRzkiTgICKYK4Mk",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export default function saveCadastroData(name, age,  email) {
+export default function saveCadastroData(name, age, email) {
   const cadastroRef = ref(db, "Users"); // Nome da referência no banco de dados
 
   // Cria uma nova req com um ID gerado automaticamente
@@ -28,10 +28,10 @@ export default function saveCadastroData(name, age,  email) {
     email,
   })
     .then(() => {
-      alert("Cadastro salvo com sucesso!");
+      console.log('user cadastrado')
     })
     .catch((error) => {
       console.error("Erro ao salvar o cadastro:", error);
-      alert('algo deu de errado ao cadastrar o user')
+      alert("algo deu de errado ao cadastrar o user");
     });
 }
