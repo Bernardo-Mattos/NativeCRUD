@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push, set } from "firebase/database";
 
 import "firebase/database";
-import { Alert } from "react-native";
+import { Alert, Modal } from "react-native";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAKT6ZB7E2wq5q8jKrEzRzkiTgICKYK4Mk",
@@ -18,6 +18,12 @@ const db = getDatabase(app);
 export default function saveCadastroData(name, age, email) {
   const cadastroRef = ref(db, "Users"); // Nome da referência no banco de dados
 
+  // Verifica se os campos estão preenchidos
+  if (!name || !age || !email) {
+    Alert.alert("Preencha todos os campos!");
+    return false; // Retorna false quando os campos não estão preenchidos
+  }
+
   // Cria uma nova req com um ID gerado automaticamente
   const newCadastroRef = push(cadastroRef);
 
@@ -26,12 +32,11 @@ export default function saveCadastroData(name, age, email) {
     name,
     age,
     email,
-  })
-    .then(() => {
-      console.log('user cadastrado')
-    })
-    .catch((error) => {
-      console.error("Erro ao salvar o cadastro:", error);
-      alert("algo deu de errado ao cadastrar o user");
-    });
+  }).then(() => {
+    console.log("Usuário cadastrado");
+  }).catch((error) => {
+    console.error("Erro ao cadastrar usuário:", error);
+  });
+
+  return true; // Retorna true quando o cadastro é bem-sucedido
 }

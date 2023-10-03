@@ -20,9 +20,13 @@ export default function Cadastro({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleSignUp = async () => {
-    saveCadastroData(name, age, email);
-    await delay(100);
-    navigation.navigate("Login");
+    const isCadastroSuccessful = saveCadastroData(name, age, email);
+  
+    if (isCadastroSuccessful) {
+      setModalVisible(true); // Mostrar o modal de sucesso se o cadastro for bem-sucedido
+      await delay(2000);// espera 1 segundo para fechar a tela e voltar pra home
+      navigation.navigate('Login')
+    }
   };
 
   return (
@@ -31,21 +35,14 @@ export default function Cadastro({ navigation }) {
         animationType="fade"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
+        
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
               Usuario cadastrado com sucesso !
             </Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={handleSignUp}
-            >
               <Text style={styles.textStyle}>Logar</Text>
-            </Pressable>
           </View>
         </View>
       </Modal>
@@ -70,7 +67,7 @@ export default function Cadastro({ navigation }) {
         />
         <Pressable
         style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
+        onPress={handleSignUp}
       >
         <Text style={styles.textStyle}>Cadastrar</Text>
       </Pressable>
