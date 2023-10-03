@@ -5,10 +5,12 @@ import {
   TextInput,
   Modal,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 import { useState } from "react";
 import saveCadastroData from "../../config/firebase.config";
 import { FontAwesome } from "@expo/vector-icons";
+import ModalPerson from "../../components/modal";
 
 export default function Cadastro({ navigation }) {
   // gera um delay em algumas functions
@@ -18,31 +20,43 @@ export default function Cadastro({ navigation }) {
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const handleSignUp = async () => {
     const isCadastroSuccessful = saveCadastroData(name, age, email);
-  
+
     if (isCadastroSuccessful) {
       setModalVisible(true); // Mostrar o modal de sucesso se o cadastro for bem-sucedido
-      await delay(2000);// espera 1 segundo para fechar a tela e voltar pra home
-      navigation.navigate('Login')
+      await delay(1000); // espera 1 segundo para fechar a tela e voltar pra home
+      //setModalVisible(false)
+      navigation.navigate("Cadastro");
+    } else if (!isCadastroSuccessful) {
+      setShowErrorModal(true);
     }
   };
 
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        
-      >
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
               Usuario cadastrado com sucesso !
             </Text>
-              <Text style={styles.textStyle}>Logar</Text>
+            <Text style={styles.textStyle}>Logar</Text>
+          </View>
+        </View>
+      </Modal>
+      <Modal animationType="fade" transparent={true} visible={showErrorModal}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>preencha todis os campos!</Text>
+            <Pressable onPress={() => {
+                setShowErrorModal(false);
+              }}
+              >
+              <Text>ok</Text>
+            </Pressable>
           </View>
         </View>
       </Modal>
@@ -66,13 +80,12 @@ export default function Cadastro({ navigation }) {
           onChangeText={(text) => setEmail(text)}
         />
         <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={handleSignUp}
-      >
-        <Text style={styles.textStyle}>Cadastrar</Text>
-      </Pressable>
+          style={[styles.button, styles.buttonOpen]}
+          onPress={handleSignUp}
+        >
+          <Text style={styles.textStyle}>Cadastrar</Text>
+        </Pressable>
       </View>
-      
     </View>
   );
 }
@@ -95,7 +108,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    top:50,
+    top: 50,
   },
   input: {
     width: "90%",
@@ -109,7 +122,7 @@ const styles = StyleSheet.create({
 
   modalView: {
     margin: 20,
-    top:'' ,
+    top: "",
     backgroundColor: "#fff",
     borderRadius: 20,
     padding: 20,
@@ -123,10 +136,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  centeredView:{
+  centeredView: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   button: {
     borderRadius: 4,

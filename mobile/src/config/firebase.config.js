@@ -20,7 +20,6 @@ export default function saveCadastroData(name, age, email) {
 
   // Verifica se os campos estão preenchidos
   if (!name || !age || !email) {
-    Alert.alert("Preencha todos os campos!");
     return false; // Retorna false quando os campos não estão preenchidos
   }
 
